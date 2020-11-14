@@ -32,7 +32,7 @@ import Stage3 from './Components/Stage3/Stage3';
 // });
 
 function getSteps() {
-    return ['PO Detail', 'STAGES OF INSPECTION/ QC', 'Container Tracker'];
+    return ['Stage1', 'Stage2', 'Stage3'];
 }
 
 function getStepContent(step) {
@@ -41,7 +41,7 @@ function getStepContent(step) {
         case 0:
             return (
               <div className='stage-data'>
-                <Stage1/>
+                <Stage1 />
               </div>
                 
             );
@@ -49,7 +49,7 @@ function getStepContent(step) {
             return (
                 
                 <div className='stage-data'>
-                  <Stage2/>
+                  <Stage2 />
                 </div>
             );
         case 2:
@@ -196,7 +196,7 @@ class App extends React.Component {
                                     {...buttonProps}
                                 >
                                     {label}
-                                </StepButton>
+                                </StepButton> 
                             </Step>
                         );
                     })}
@@ -213,13 +213,7 @@ class App extends React.Component {
                             <div>
                                 <Typography >{getStepContent(activeStep)}</Typography>
                                 <div className="text-center">
-                                    <Button
-                                        disabled={activeStep === 0}
-                                        onClick={this.handleBack}
-                                        // className={classes.button}
-                                    >
-                                        Back
-                                    </Button>
+                                    
                                     <Button
                                         variant="contained"
                                         color="primary"
