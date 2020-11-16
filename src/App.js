@@ -10,6 +10,7 @@ import Stage3 from "./Components/Stage3/Stage3";
 const App = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [csvData, setCsvData] = useState('')
+  const [formData, setFormData] = useState('')
 
   console.log("activeStep", activeStep);
   console.log('csvData', csvData);
@@ -29,14 +30,14 @@ const App = () => {
     else if (step === 1) {
       return (
         <div className="stage-data">
-          <Stage2 csvData={csvData} setActiveStep={setActiveStep} />
+          <Stage2 csvData={csvData} setActiveStep={setActiveStep} setFormData={setFormData} />
         </div>
       );
     }
     else if (step === 2) {
       return (
         <div className="stage-data">
-          <Stage3 />
+          <Stage3 formData={formData} />
         </div>
       );
     }

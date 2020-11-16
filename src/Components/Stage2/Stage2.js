@@ -11,7 +11,7 @@ const Stage2 = (props) => {
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
 
-  const { setActiveStep, csvData } = props;
+  const { setActiveStep, csvData,setFormData } = props;
 
   useEffect(() => {
     if (csvData) {
@@ -56,6 +56,13 @@ const Stage2 = (props) => {
     // alert("clicked!!");
     console.log(address, bedroom, bathroom, description);
     setActiveStep(2);
+    setFormData({
+      address: address,
+      bedroom: bedroom,
+      bathroom: bathroom,
+      description: description
+    })
+
   };
 
   return (
@@ -121,7 +128,6 @@ const Stage2 = (props) => {
           variant="outlined"
         />
       </div>
-      
       <Button
         type="submit"
         variant="contained"
