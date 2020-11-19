@@ -93,6 +93,7 @@ const Stage3 = (props) => {
                 console.log("manish", data);
                 return (
                   // <div key={index}>{data}</div>
+
                   <div
                     key={index}
                     style={{
@@ -102,20 +103,22 @@ const Stage3 = (props) => {
                       marginRight: 50,
                     }}
                   >
-                    <img
-                      style={{ width: 100, height: 100 }}
-                      alt="image"
-                      src={data}
-                    ></img>
-                    <Checkbox
-                      defaultChecked={false}
-                      // checked={false}
-                      
-                      color="primary"
-                      onChange={(e) => {
-                        checkBoxHandler(e, index);
-                      }}
-                    />
+                    
+                      <div>
+                        <img
+                          style={{ width: 100, height: 100 }}
+                          alt="image"
+                          src={data}
+                        ></img>
+                        <Checkbox
+                          defaultChecked={false}
+                          color="primary"
+                          onChange={(e) => {
+                            checkBoxHandler(e, index);
+                          }}
+                        />
+                      </div>
+                    
                   </div>
                 );
               })
@@ -124,7 +127,7 @@ const Stage3 = (props) => {
       </div>
 
       <Button
-        disabled={imgData.length===4 ? false : true}
+        // disabled={imgData.length===4 ? false : true}
         type="submit"
         variant="contained"
         color="primary"
