@@ -6,10 +6,11 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 const Stage3 = (props) => {
   const [imgData, setImageData] = useState([]);
-
+  const [imgLocalPath, setImgLocalPath] = useState([]);
   const [featuredImage, setFeaturedImage] = useState([]);
 
   const { formData } = props;
+  const imageArrayDataForLocal = imgLocalPath;
   const imageArrayData = imgData;
 
   const resizeFile = (file) =>
@@ -31,8 +32,11 @@ const Stage3 = (props) => {
   const handleImageUpload = async (e) => {
     if (imageArrayData.length < 4) {
       let uploadImage = e.target.files[0];
+      console.log('e.target.files',e.target.files);
       const myData = await resizeFile(uploadImage);
-      // console.log('myData', myData);
+      // let uploadLocalImage = e.target.value;
+      imageArrayDataForLocal.push(uploadImage.webkitRelativePath);
+      setImgLocalPath(imageArrayDataForLocal);
       imageArrayData.push(myData);
       setImageData(imageArrayData);
       // console.log("changesdimage data", imgData);
@@ -85,15 +89,13 @@ const Stage3 = (props) => {
             required
             variant="outlined"
           />
-          {/* {console.log('manish1',imgData)} */}
+          {console.log('manish1',imgLocalPath)}
         </div>
         <div style={{ display: "flex", marginLeft: 100, marginRight: 100 }}>
-          {imgData.length > 0
-            ? imgData.map((data, index) => {
+          {imgLocalPath.length > 0
+            ? imgLocalPath.map((data, index) => {
                 console.log("manish", data);
                 return (
-                  // <div key={index}>{data}</div>
-
                   <div
                     key={index}
                     style={{
