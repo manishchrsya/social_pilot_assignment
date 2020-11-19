@@ -7,11 +7,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 const Stage3 = (props) => {
   const [imgData, setImageData] = useState([]);
   const [imgLocalPath, setImgLocalPath] = useState([]);
-  const [featuredImage, setFeaturedImage] = useState([]);
+  const [featuredImage, setFeaturedImage] = useState("");
 
   const { formData } = props;
-  const imageArrayDataForLocal = imgLocalPath;
-  const imageArrayData = imgData;
 
   const resizeFile = (file) =>
     new Promise((resolve) => {
@@ -30,16 +28,11 @@ const Stage3 = (props) => {
     });
 
   const handleImageUpload = async (e) => {
-    if (imageArrayData.length < 4) {
-      let uploadImage = e.target.files[0];
-      console.log('e.target.files',e.target.files);
-      const myData = await resizeFile(uploadImage);
-      // let uploadLocalImage = e.target.value;
-      imageArrayDataForLocal.push(uploadImage.webkitRelativePath);
-      setImgLocalPath(imageArrayDataForLocal);
-      imageArrayData.push(myData);
-      setImageData(imageArrayData);
-      // console.log("changesdimage data", imgData);
+    if (imgData.length < 4) {
+      const objectUrl = URL.createObjectURL(e.target.files[0]);
+      setImgLocalPath([...imgLocalPath, objectUrl]);
+      const myData = await resizeFile(e.target.files[0]);
+      setImageData([...imgData, myData]);
     } else {
       alert("You have already selected the Maximum numbers of images!!");
     }
@@ -49,14 +42,9 @@ const Stage3 = (props) => {
     e.preventDefault();
     const data = {
       ...formData,
-      image1: imgData[0],
-      image2: imgData[1],
-      imgage3: imgData[2],
-      image4: imgData[3],
+      images: imgData,
       featuredImage: featuredImage,
     };
-
-    // console.log('imgData', imgData);
 
     console.log("formData", data);
   };
@@ -89,12 +77,13 @@ const Stage3 = (props) => {
             required
             variant="outlined"
           />
-          {console.log('manish1',imgLocalPath)}
+          {console.log("manish1", imgLocalPath)}
         </div>
+        {console.log("imgArrayData", imgData)}
         <div style={{ display: "flex", marginLeft: 100, marginRight: 100 }}>
           {imgLocalPath.length > 0
             ? imgLocalPath.map((data, index) => {
-                console.log("manish", data);
+                // console.log("manish", data);
                 return (
                   <div
                     key={index}
@@ -127,7 +116,7 @@ const Stage3 = (props) => {
       </div>
 
       <Button
-        // disabled={imgData.length===4 ? false : true}
+        disabled={imgData.length === 4 ? false : true}
         type="submit"
         variant="contained"
         color="primary"
