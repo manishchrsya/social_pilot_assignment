@@ -103,22 +103,20 @@ const Stage3 = (props) => {
                       marginRight: 50,
                     }}
                   >
-                    
-                      <div>
-                        <img
-                          style={{ width: 100, height: 100 }}
-                          alt="image"
-                          src={data}
-                        ></img>
-                        <Checkbox
-                          defaultChecked={false}
-                          color="primary"
-                          onChange={(e) => {
-                            checkBoxHandler(e, index);
-                          }}
-                        />
-                      </div>
-                    
+                    <div>
+                      <img
+                        style={{ width: 100, height: 100 }}
+                        alt="image"
+                        src={data}
+                      ></img>
+                      <Checkbox
+                        defaultChecked={false}
+                        color="primary"
+                        onChange={(e) => {
+                          checkBoxHandler(e, index);
+                        }}
+                      />
+                    </div>
                   </div>
                 );
               })

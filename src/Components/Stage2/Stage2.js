@@ -25,8 +25,9 @@ const Stage2 = (props) => {
       setBedroom("");
       setBathroom("");
       setDescription("");
+      getLocation();
     }
-    getLocation();
+    
   }, []);
   useEffect(() => {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true&key=AIzaSyCmbjYzue6gtnR6xDiDT7cOEyz9kCjCcZs`;
